@@ -8,13 +8,18 @@ on:
 jobs:
   etls:
     runs-on: ubuntu-latest
+    env:
+      MONGO_SERVER: ${{ secrets.MONGO_SERVER }}
+      MONGO_USER: ${{ secrets.MONGO_USER }}
+      MONGO_PASSWORD: ${{ secrets.MONGO_PASSWORD }}
 
     steps:
       - uses: actions/checkout@v3
-
       - name: Install requirements
         run: |
+          echo "test $MONGO_SERVER"
           python -m pip install -r requirements.txt
+
 
       - name: Chargers ETL
         run: |

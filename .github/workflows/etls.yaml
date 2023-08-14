@@ -1,0 +1,25 @@
+name: Daily ETLs
+
+on:
+  schedule:
+  - cron: 0 4 * * *
+  workflow_dispatch:
+
+jobs:
+  etls:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install requirements
+        run: |
+          python -m pip install -r requirements.txt
+
+      - name: Chargers ETL
+        run: |
+          python scripts/extract_chargers.py
+
+      - name: Tariffs ETL
+        run: |
+          python scripts/extract_tariffs.py

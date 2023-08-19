@@ -2,3 +2,7 @@ requests
 pandas
 pymongo
 python-dotenv
+jupyter
+beautifulsoup4
+lxml
+pycountry

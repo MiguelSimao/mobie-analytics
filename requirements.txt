@@ -6,3 +6,6 @@ jupyter
 beautifulsoup4
 lxml
 pycountry
+matplotlib
+jupyter-book
+scipy

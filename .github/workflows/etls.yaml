@@ -23,8 +23,8 @@ jobs:
 
       - name: Chargers ETL
         run: |
-          python scripts/extract_chargers.py
+          python -m scripts.extract_chargers
 
       - name: Tariffs ETL
         run: |
-          python scripts/extract_tariffs.py
+          python -m scripts.extract_tariffs

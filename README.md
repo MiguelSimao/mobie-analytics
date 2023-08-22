@@ -1,1 +1,1 @@
-# mobie-analytics-data-collection
+# mobie-analytics

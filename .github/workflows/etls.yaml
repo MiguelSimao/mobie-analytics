@@ -21,9 +21,9 @@ jobs:
           python -m pip install -r requirements.txt
 
 
-      - name: Chargers ETL
-        run: |
-          python -m scripts.extract_chargers
+      # - name: Chargers ETL
+      #   run: |
+      #     python -m scripts.extract_chargers
 
       - name: Tariffs ETL
         run: |

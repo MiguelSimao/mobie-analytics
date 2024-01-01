@@ -9,3 +9,4 @@ pycountry
 matplotlib
 jupyter-book
 scipy
+tqdm

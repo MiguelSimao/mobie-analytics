@@ -1,9 +1,13 @@
 import os
+import json
 import requests
 import pandas as pd
 from src.data_collection.db import connect_database
 
-URL_LOCATIONS = "https://ocpi.mobinteli.com/2.2/locations"
+LOCATIONS_URL = "https://pgm.mobie.pt/integration/locations"
+LOCATIONS_APIKEY = "id4h40E75o64H4e4uXheqcg1o"
+LOCATIONS_USER = "mobie-public-site"
+LOCATIONS_PASS = "0cu3NA0^1B$x9KhvJCZmTHv@K"
 RELOAD = True
 
 
@@ -13,8 +17,17 @@ def chargers_etl():
     os.makedirs("data", exist_ok=True)
     if RELOAD or not os.path.exists(os.path.join("data", "chargers.json")):
         print("Downloading charger data...")
-        response = requests.get(URL_LOCATIONS)
-        open(os.path.join("data", "chargers.json"), "w").write(response.text)
+        response = requests.get(
+            LOCATIONS_URL, 
+            auth=(LOCATIONS_USER, LOCATIONS_PASS),
+            headers={"Api-Key": LOCATIONS_APIKEY},
+        )
+        print("Done. Writing to disk...")
+        # Take only location data:
+        data = json.dumps(json.loads(response.text)['data'])
+        # Write to disk:
+        open(os.path.join("data", "chargers.json"), "w").write(data)
+        print("Done")
 
     # Transform with pandas
     df = pd.read_json(os.path.join("data", "chargers.json"))

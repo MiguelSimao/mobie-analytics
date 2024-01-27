@@ -10,3 +10,5 @@ matplotlib
 jupyter-book
 scipy
 tqdm
+furo
+dash
